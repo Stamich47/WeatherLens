@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Header() {
+export default function Header(props) {
   return (
     <header className="bg-primary text-white text-center py-3">
-      <h1>WeatherLens</h1>
+      <img src={props.logo} width={200}></img>
     </header>
   );
 }
