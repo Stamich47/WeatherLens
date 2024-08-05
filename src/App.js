@@ -6,7 +6,6 @@ import NavBar from "./components/NavBar";
 import { Nav } from "react-bootstrap";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
-import TemperatureFetch from "./components/TemperatureFetch";
 
 function App() {
   return (
@@ -15,7 +14,6 @@ function App() {
       <NavBar icon={icon} />
       <Main />
       <Footer />
-      <TemperatureFetch />
     </div>
   );
 }

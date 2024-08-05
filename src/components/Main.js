@@ -1,4 +1,5 @@
 import React from "react";
+import TemperatureFetch from "./TemperatureFetch";
 
 const time = new Date().toLocaleTimeString();
 const hour = new Date().getHours();
@@ -18,12 +19,21 @@ const mainGreeting = () => {
 };
 
 export default function Main() {
+  const currentTime = new Date().toLocaleTimeString();
+
   return (
     <main className="container mt-4">
       <div className="row">
         <div className="col-md-8">
           <h2>{mainGreeting()}</h2>
-          <p>Looks like Sunny and 75 for the next 100 days!</p>
+          <p>
+            It is currently {currentTime} and{" "}
+            <strong>
+              <TemperatureFetch />
+            </strong>
+            {"°F "}
+            in Los Angeles.
+          </p>
         </div>
         <div className="col-md-4">
           <h2>Sidebar TBD</h2>
