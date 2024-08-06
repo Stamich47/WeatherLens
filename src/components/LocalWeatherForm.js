@@ -13,9 +13,9 @@ const LocalWeatherForm = ({ onSearch }) => {
   };
 
   return (
-    <form className="form-inline my-2 my-lg-0" onSubmit={handleFormSubmit}>
+    <form className="form-inline my-3 my-lg-0" onSubmit={handleFormSubmit}>
       <input
-        className="form-control mr-sm-2"
+        className="form-control mr-sm-2 my-1 w-75"
         type="search"
         placeholder="Enter your zipcode..."
         aria-label="Search"
