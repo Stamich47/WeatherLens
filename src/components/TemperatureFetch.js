@@ -4,6 +4,7 @@ const WeatherComponent = () => {
   const [temperature, setTemperature] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  console.log(loading, error);
 
   useEffect(() => {
     const fetchTemperature = () => {
