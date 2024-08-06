@@ -8,7 +8,7 @@ export default function NavBar({ icon }) {
         <img src={icon} width={40} alt="weatherLens logo"></img>
       </a>
       <button
-        className="navbar-toggler"
+        className="navbar-toggler mx-2"
         type="button"
         data-toggle="collapse"
         data-target="#navbarNav"
@@ -18,7 +18,7 @@ export default function NavBar({ icon }) {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      <div className="collapse navbar-collapse" id="navbarNav">
+      <div className="collapse navbar-collapse mx-2" id="navbarNav">
         <ul className="navbar-nav">
           <li className="nav-item active">
             <a className="nav-link" href="./Main.js">
