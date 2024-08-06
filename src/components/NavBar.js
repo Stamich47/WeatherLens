@@ -1,5 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import WeatherIcon from "./WeatherSymbol";
 
 export default function NavBar(props) {
   return (
@@ -11,6 +12,7 @@ export default function NavBar(props) {
         className="navbar-toggler"
         type="button"
         data-toggle="collapse"
+        s
         data-target="#navbarNav"
         aria-controls="navbarNav"
         aria-expanded="true"

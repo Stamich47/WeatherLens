@@ -1,5 +1,6 @@
 import React from "react";
 import TemperatureFetch from "./TemperatureFetch";
+import WeatherSymbol from "./WeatherSymbol";
 
 const time = new Date().toLocaleTimeString();
 const hour = new Date().getHours();
@@ -27,18 +28,12 @@ export default function Main() {
         <div className="col-md-8">
           <h2>{mainGreeting()}</h2>
           <p>
-            It is currently {currentTime} and{" "}
+            It is currently <strong>{currentTime}</strong> and{" "}
             <strong>
               <TemperatureFetch />
             </strong>
             {"°F "}
             in Los Angeles.
-          </p>
-        </div>
-        <div className="col-md-4">
-          <h2>Sidebar TBD</h2>
-          <p>
-            Sidebar weather content that will wrap to vertical on mobile devices
           </p>
         </div>
       </div>
