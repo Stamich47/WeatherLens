@@ -2,7 +2,6 @@ import React from "react";
 import TemperatureFetch from "./TemperatureFetch";
 import WeatherSymbol from "./WeatherSymbol";
 
-const time = new Date().toLocaleTimeString();
 const hour = new Date().getHours();
 
 const mainGreeting = () => {
@@ -34,6 +33,7 @@ export default function Main() {
             </strong>
             {"°F "}
             in Los Angeles.
+            <WeatherSymbol />
           </p>
         </div>
       </div>

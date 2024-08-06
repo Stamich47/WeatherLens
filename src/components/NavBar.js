@@ -1,11 +1,10 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import WeatherIcon from "./WeatherSymbol";
 
 export default function NavBar(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a className="navbar-brand mx-2" href="#">
+      <a className="navbar-brand mx-2" href="./Main">
         <img src={props.icon} width={40} alt="weatherLens logo"></img>
       </a>
       <button
@@ -23,17 +22,17 @@ export default function NavBar(props) {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
           <li className="nav-item active">
-            <a className="nav-link" href="#">
+            <a className="nav-link" href="./Main.js">
               Local Forecast
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <a className="nav-link" href="./Main.js">
               Weather Map
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <a className="nav-link" href="./Main.js">
               Extended Forecast
             </a>
           </li>
