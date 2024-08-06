@@ -54,25 +54,25 @@ export default function Main() {
       <div className="row">
         <div className="col-md-8">
           <h2>{mainGreeting()}</h2>
-          <p>
+          <div>
             It is currently <strong>{currentTime}</strong> and{" "}
             <strong>
               <TemperatureFetch />
             </strong>
             {"°F "} in Los Angeles.
-          </p>
+          </div>
           {loading && <p>Loading...</p>}
           {error && <p>Error: {error}</p>}
           {weatherData && (
             <div>
               <h3>Daily Forecast</h3>
-              <p>
+              <div>
                 High Temperature: {weatherData.daily.temperature_2m_max[0]}°F
                 <br></br>
                 Low Temperature: {weatherData.daily.temperature_2m_min[0]}°F
                 <br></br>
                 Current Wind: {weatherData.current.wind_speed_10m} mph
-              </p>
+              </div>
             </div>
           )}
         </div>

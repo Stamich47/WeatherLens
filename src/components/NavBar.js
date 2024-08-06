@@ -1,17 +1,16 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function NavBar(props) {
+export default function NavBar({ icon }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <a className="navbar-brand mx-2" href="./Main">
-        <img src={props.icon} width={40} alt="weatherLens logo"></img>
+        <img src={icon} width={40} alt="weatherLens logo"></img>
       </a>
       <button
         className="navbar-toggler"
         type="button"
         data-toggle="collapse"
-        s
         data-target="#navbarNav"
         aria-controls="navbarNav"
         aria-expanded="true"
