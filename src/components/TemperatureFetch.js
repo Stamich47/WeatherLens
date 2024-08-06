@@ -4,7 +4,6 @@ const WeatherComponent = () => {
   const [temperature, setTemperature] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  console.log(loading, error);
 
   useEffect(() => {
     const fetchTemperature = () => {
@@ -39,6 +38,10 @@ const WeatherComponent = () => {
 
     fetchTemperature();
   }, []);
+
+  if (loading) return <p>Loading...</p>;
+
+  if (error) return <p>There was an error: {error.message}</p>;
 
   return <>{temperature}</>;
 };

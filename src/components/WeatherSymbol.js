@@ -7,7 +7,7 @@ const WeatherIcon = () => {
 
   useEffect(() => {
     const fetchWeatherData = async () => {
-      const apiKey = process.env.REACT_APP_WEATHERBIT_API_KEY; // Store your API key in .env file
+      const apiKey = process.env.REACT_APP_WEATHERBIT_API_KEY;
       const endpoint = `https://api.weatherbit.io/v2.0/current?city=Los%20Angeles&key=${apiKey}`;
 
       try {

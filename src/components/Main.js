@@ -33,7 +33,6 @@ export default function Main() {
             </strong>
             {"°F "}
             in Los Angeles.
-            <WeatherSymbol />
           </p>
         </div>
       </div>
