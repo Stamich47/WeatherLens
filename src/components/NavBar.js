@@ -21,6 +21,11 @@ export default function NavBar({ icon }) {
       <div className="collapse navbar-collapse mx-2" id="navbarNav">
         <ul className="navbar-nav">
           <li className="nav-item active">
+            <a className="nav-link" href="https://cors-anywhere.herokuapp.com/">
+              Get Access to this App
+            </a>
+          </li>
+          <li className="nav-item active">
             <a className="nav-link" href="./Main.js">
               Local Forecast
             </a>

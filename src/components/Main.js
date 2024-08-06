@@ -35,6 +35,7 @@ export default function Main() {
 
       const proxyUrl = "https://cors-anywhere.herokuapp.com/";
       const targetUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max&daily=temperature_2m_min&temperature_unit=fahrenheit&current=wind_speed_10m&wind_speed_unit=mph`;
+      console.log(targetUrl);
 
       const response = await fetch(proxyUrl + targetUrl);
       if (!response.ok) {
