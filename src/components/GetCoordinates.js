@@ -7,7 +7,9 @@ export const getCoordinatesFromZipcode = async (zipcode) => {
   console.log(data.results[0]);
   if (data.results.length > 0) {
     const { lat, lng } = data.results[0].geometry;
-    return { latitude: lat, longitude: lng };
+    const city = data.results[0].components._normalized_city;
+
+    return { latitude: lat, longitude: lng, city: city };
   } else {
     throw new Error("Invalid zipcode");
   }

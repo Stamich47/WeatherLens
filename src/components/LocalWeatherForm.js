@@ -3,30 +3,56 @@ import React, { useState } from "react";
 const LocalWeatherForm = ({ onSearch }) => {
   const [zipcode, setZipcode] = useState("");
 
-  const handleInputChange = (e) => {
-    setZipcode(e.target.value);
-  };
-
-  const handleFormSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     onSearch(zipcode);
   };
 
   return (
-    <form className="form-inline my-3 my-lg-0" onSubmit={handleFormSubmit}>
+    <form onSubmit={handleSubmit} className="mb-4 my-3">
       <input
-        className="form-control mr-sm-2 my-1 w-75"
-        type="search"
-        placeholder="Enter your zipcode..."
-        aria-label="Search"
+        type="text"
         value={zipcode}
-        onChange={handleInputChange}
+        onChange={(e) => setZipcode(e.target.value)}
+        placeholder="Enter Zipcode..."
+        className="form-control mb-2"
       />
-      <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
-        Search Local Weather
+      <button type="submit" className="btn btn-primary">
+        Get Weather
       </button>
     </form>
   );
 };
 
 export default LocalWeatherForm;
+
+// const LocalWeatherForm = ({ onSearch }) => {
+//   const [zipcode, setZipcode] = useState("");
+
+//   const handleInputChange = (e) => {
+//     setZipcode(e.target.value);
+//   };
+
+//   const handleFormSubmit = (e) => {
+//     e.preventDefault();
+//     onSearch(zipcode);
+//   };
+
+//   return (
+//     <form className="form-inline my-3 my-lg-0" onSubmit={handleFormSubmit}>
+//       <input
+//         className="form-control mr-sm-2 my-1 w-50"
+//         type="search"
+//         placeholder="Enter your zipcode..."
+//         aria-label="Search"
+//         value={zipcode}
+//         onChange={handleInputChange}
+//       />
+//       <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
+//         Get Weather
+//       </button>
+//     </form>
+//   );
+// };
+
+// export default LocalWeatherForm;
