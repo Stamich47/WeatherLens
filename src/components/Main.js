@@ -73,19 +73,22 @@ export default function Main() {
           {loading && <p>Loading...</p>}
           {error && <p>Error: {error}</p>}
           {weatherData && (
-            <div className="card mt-4">
+            <div className="card mt-4 alert alert-success">
               <div className="card-body">
                 <h5 className="card-title mb-4">
                   Today's Forecast for {coordinates.city} :
                 </h5>
                 <p className="card-text">
-                  High Temperature: {weatherData.daily.temperature_2m_max[0]}°F
+                  High Temperature:{" "}
+                  <strong>{weatherData.daily.temperature_2m_max[0]}°F</strong>
                 </p>
                 <p className="card-text">
-                  Low Temperature: {weatherData.daily.temperature_2m_min[0]}°F
+                  Low Temperature:{" "}
+                  <strong>{weatherData.daily.temperature_2m_min[0]}°F</strong>
                 </p>
                 <p className="card-text">
-                  Current Wind Speed: {weatherData.current.wind_speed_10m} mph
+                  Current Wind Speed:{" "}
+                  <strong>{weatherData.current.wind_speed_10m} mph</strong>
                 </p>
                 <div>
                   <WeatherSymbol
