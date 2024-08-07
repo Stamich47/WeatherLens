@@ -21,7 +21,6 @@ const mainGreeting = () => {
 };
 
 export default function Main() {
-  const [zipcode, setZipcode] = useState("");
   const [coordinates, setCoordinates] = useState({
     latitude: null,
     longitude: null,
@@ -33,7 +32,6 @@ export default function Main() {
   const currentTime = new Date().toLocaleTimeString();
 
   const handleSearch = async (zipcode) => {
-    setZipcode(zipcode);
     setLoading(true);
     setError(null);
 
