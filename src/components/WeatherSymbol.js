@@ -4,46 +4,46 @@ import React, { useState, useEffect } from "react";
 const getWeatherSymbol = (weatherCode) => {
   switch (weatherCode) {
     case 0:
-      return "☀️"; // Clear sky
+      return "☀️ Clear"; // Clear sky
     case 1:
     case 2:
     case 3:
-      return "🌤️"; // Mainly clear, partly cloudy, and overcast
+      return "🌤️ Partly Cloudy"; // Mainly clear, partly cloudy, and overcast
     case 45:
     case 48:
-      return "🌫️"; // Fog and depositing rime fog
+      return "🌫️  Foggy"; // Fog and depositing rime fog
     case 51:
     case 53:
     case 55:
-      return "🌧️"; // Drizzle: Light, moderate, and dense intensity
+      return "🌧️ Light Rain"; // Drizzle: Light, moderate, and dense intensity
     case 56:
     case 57:
-      return "🌨️"; // Freezing Drizzle: Light and dense intensity
+      return "🌨️ Freezing Drizzle"; // Freezing Drizzle: Light and dense intensity
     case 61:
     case 63:
     case 65:
-      return "🌧️"; // Rain: Slight, moderate and heavy intensity
+      return "🌧️ Rain"; // Rain: Slight, moderate and heavy intensity
     case 66:
     case 67:
-      return "🌨️"; // Freezing Rain: Light and heavy intensity
+      return "🌨️ Freezing Rain"; // Freezing Rain: Light and heavy intensity
     case 71:
     case 73:
     case 75:
-      return "❄️"; // Snow fall: Slight, moderate, and heavy intensity
+      return "❄️ Snowing"; // Snow fall: Slight, moderate, and heavy intensity
     case 77:
-      return "❄️"; // Snow grains
+      return "❄️ Light Snow"; // Snow grains
     case 80:
     case 81:
     case 82:
-      return "🌧️"; // Rain showers: Slight, moderate, and violent
+      return "🌧️ Rain Showers"; // Rain showers: Slight, moderate, and violent
     case 85:
     case 86:
-      return "❄️"; // Snow showers slight and heavy
+      return "❄️ Snow Showers"; // Snow showers slight and heavy
     case 95:
-      return "⛈️"; // Thunderstorm: Slight or moderate
+      return "⛈️ Thunderstorm"; // Thunderstorm: Slight or moderate
     case 96:
     case 99:
-      return "🌩️"; // Thunderstorm with slight and heavy hail
+      return "🌩️ T-Storm w/ Hail"; // Thunderstorm with slight and heavy hail
     default:
       return "❓"; // Default symbol
   }

@@ -1,10 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function NavBar({ icon }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a className="navbar-brand mx-2" href="./Main">
+      <a
+        className="navbar-brand mx-2"
+        href="https://app-weatherlens.netlify.app/"
+      >
         <img src={icon} width={40} alt="weatherLens logo"></img>
       </a>
       <button
@@ -22,14 +26,18 @@ export default function NavBar({ icon }) {
         <ul className="navbar-nav">
           <li className="nav-item active">
             <a className="nav-link" href="https://cors-anywhere.herokuapp.com/">
-              Get Access to this App
+              403 Error - Get Access
             </a>
           </li>
-          <li className="nav-item active">
-            <a className="nav-link" href="./Main.js">
-              Local Forecast
-            </a>
-          </li>
+
+          <Link className="link" to="hourly-forecast">
+            <li className="nav-item active">
+              <a className="nav-link" href="./Main.js">
+                Hourly Forecast
+              </a>
+            </li>
+          </Link>
+
           <li className="nav-item">
             <a className="nav-link" href="./Main.js">
               Weather Map
