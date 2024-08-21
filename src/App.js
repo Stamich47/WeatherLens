@@ -5,6 +5,8 @@ import Header from "./components/Header";
 import NavBar from "./components/NavBar";
 import Main from "./components/Main";
 import HourlyForecast from "./components/HourlyForecast";
+import WeatherMap from "./components/WeatherMap";
+import ExtendedForecast from "./components/ExtendedForecast";
 import Footer from "./components/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -15,8 +17,10 @@ function App() {
       <NavBar icon={icon} />
 
       <Routes>
-        <Route index element={<Main />} />
+        <Route index path="main" element={<Main />} />
         <Route path="hourly-forecast" element={<HourlyForecast />} />
+        <Route path="weather-map" element={<WeatherMap />} />
+        <Route path="extended-forecast" element={<ExtendedForecast />} />
       </Routes>
 
       <Footer />

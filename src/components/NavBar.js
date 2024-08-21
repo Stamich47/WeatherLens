@@ -30,6 +30,14 @@ export default function NavBar({ icon }) {
             </a>
           </li>
 
+          <Link className="link" to="main">
+            <li className="nav-item active">
+              <a className="nav-link" href="./Main.js">
+                Home
+              </a>
+            </li>
+          </Link>
+
           <Link className="link" to="hourly-forecast">
             <li className="nav-item active">
               <a className="nav-link" href="./Main.js">
@@ -38,16 +46,20 @@ export default function NavBar({ icon }) {
             </li>
           </Link>
 
-          <li className="nav-item">
-            <a className="nav-link" href="./Main.js">
-              Weather Map
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="./Main.js">
-              Extended Forecast
-            </a>
-          </li>
+          <Link className="link" to="weather-map">
+            <li className="nav-item">
+              <a className="nav-link" href="./Main.js">
+                Weather Map
+              </a>
+            </li>
+          </Link>
+          <Link className="link" to="extended-forecast">
+            <li className="nav-item">
+              <a className="nav-link" href="./Main.js">
+                Extended Forecast
+              </a>
+            </li>
+          </Link>
         </ul>
       </div>
     </nav>
