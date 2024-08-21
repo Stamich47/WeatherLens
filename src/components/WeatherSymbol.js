@@ -4,48 +4,35 @@ import React, { useState, useEffect } from "react";
 const getWeatherSymbol = (weatherCode) => {
   switch (weatherCode) {
     case 0:
-      return `☀️ Clear`; // Clear sky
+      return { icon: "☀️", text: "Clear" }; // Clear sky
     case 1:
     case 2:
     case 3:
-      return "🌤️ Partly Cloudy"; // Mainly clear, partly cloudy, and overcast
+      return { icon: "🌤️", text: "Partly Cloudy" }; // Mainly clear, partly cloudy, and overcast
     case 45:
     case 48:
-      return "🌫️  Foggy"; // Fog and depositing rime fog
+      return { icon: "🌫️", text: "Foggy" }; // Fog and depositing rime fog
     case 51:
     case 53:
     case 55:
-      return "🌧️ Light Rain"; // Drizzle: Light, moderate, and dense intensity
+      return { icon: "🌧️", text: "Light Rain" }; // Drizzle: Light, moderate, and dense intensity
     case 56:
     case 57:
-      return "🌨️ Freezing Drizzle"; // Freezing Drizzle: Light and dense intensity
+      return { icon: "🌨️", text: "Freezing Drizzle" }; // Freezing Drizzle: Light and dense intensity
     case 61:
     case 63:
     case 65:
-      return "🌧️ Rain"; // Rain: Slight, moderate and heavy intensity
+      return { icon: "🌧️", text: "Rain" }; // Rain: Slight, moderate and heavy intensity
     case 66:
     case 67:
-      return "🌨️ Freezing Rain"; // Freezing Rain: Light and heavy intensity
+      return { icon: "🌨️", text: "Freezing Rain" }; // Freezing Rain: Light and heavy intensity
     case 71:
     case 73:
     case 75:
-      return "❄️ Snowing"; // Snow fall: Slight, moderate, and heavy intensity
-    case 77:
-      return "❄️ Light Snow"; // Snow grains
-    case 80:
-    case 81:
-    case 82:
-      return "🌧️ Rain Showers"; // Rain showers: Slight, moderate, and violent
-    case 85:
-    case 86:
-      return "❄️ Snow Showers"; // Snow showers slight and heavy
-    case 95:
-      return "⛈️ Thunderstorm"; // Thunderstorm: Slight or moderate
-    case 96:
-    case 99:
-      return "🌩️ T-Storm w/ Hail"; // Thunderstorm with slight and heavy hail
+      return { icon: "❄️", text: "Snowing" }; // Snow fall: Slight, moderate, and heavy intensity
+    // Add more cases as needed
     default:
-      return "❓"; // Default symbol
+      return { icon: "❓", text: "Unknown" }; // Default case for unknown weather codes
   }
 };
 
@@ -81,11 +68,15 @@ const WeatherSymbol = ({ latitude, longitude }) => {
     return <div>Error: {error}</div>;
   }
 
+  const weather = getWeatherSymbol(weatherCode);
+
   return (
     <div>
       {weatherCode !== null ? (
         <>
-          <span className="display-6">{getWeatherSymbol(weatherCode)}</span>
+          <span className="display-6">
+            {weather.icon} {weather.text}
+          </span>
         </>
       ) : (
         <div>Loading...</div>

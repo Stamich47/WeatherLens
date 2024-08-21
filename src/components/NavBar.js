@@ -6,7 +6,12 @@ export default function NavBar({ icon }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link className="link" to="main">
-        <img src={icon} width={40} alt="weatherLens logo"></img>
+        <img
+          src={icon}
+          width={40}
+          alt="weatherLens logo"
+          className="mx-2"
+        ></img>
       </Link>
       <button
         className="navbar-toggler mx-2"
@@ -28,34 +33,18 @@ export default function NavBar({ icon }) {
           </li>
 
           <Link className="link" to="main">
-            <li className="nav-item active">
-              <a className="nav-link" href="./Main.js">
-                Home
-              </a>
-            </li>
+            <li className="nav-item nav-link">Home</li>
           </Link>
 
           <Link className="link" to="hourly-forecast">
-            <li className="nav-item active">
-              <a className="nav-link" href="./Main.js">
-                Hourly Forecast
-              </a>
-            </li>
+            <li className="nav-item nav-link">Hourly Forecast</li>
           </Link>
 
           <Link className="link" to="weather-map">
-            <li className="nav-item">
-              <a className="nav-link" href="./Main.js">
-                Weather Map
-              </a>
-            </li>
+            <li className="nav-link nav-item">Weather Map</li>
           </Link>
           <Link className="link" to="extended-forecast">
-            <li className="nav-item">
-              <a className="nav-link" href="./Main.js">
-                Extended Forecast
-              </a>
-            </li>
+            <li className="nav-item nav-link">Extended Forecast</li>
           </Link>
         </ul>
       </div>

@@ -41,10 +41,10 @@ export default function Main() {
       );
       setCoordinates({ latitude, longitude, city });
 
-      // const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+      const proxyUrl = "https://cors-anywhere.herokuapp.com/";
       const targetUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code&daily=temperature_2m_max&daily=temperature_2m_min&temperature_unit=fahrenheit&current=wind_speed_10m&wind_speed_unit=mph`;
 
-      const response = await fetch(targetUrl);
+      const response = await fetch(proxyUrl + targetUrl);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -76,7 +76,7 @@ export default function Main() {
             <div className="card mt-4 alert alert-success">
               <div className="card-body">
                 <h5 className="card-title mb-4">
-                  Today's Forecast for {coordinates.city} :
+                  Today's Forecast for {coordinates.city}
                 </h5>
                 <p className="card-text">
                   High Temperature:{" "}
