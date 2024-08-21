@@ -8,7 +8,7 @@ import HourlyForecast from "./components/HourlyForecast";
 import WeatherMap from "./components/WeatherMap";
 import ExtendedForecast from "./components/ExtendedForecast";
 import Footer from "./components/Footer";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (

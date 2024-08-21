@@ -5,12 +5,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export default function NavBar({ icon }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a
-        className="navbar-brand mx-2"
-        href="https://app-weatherlens.netlify.app/"
-      >
+      <Link className="link" to="main">
         <img src={icon} width={40} alt="weatherLens logo"></img>
-      </a>
+      </Link>
       <button
         className="navbar-toggler mx-2"
         type="button"
