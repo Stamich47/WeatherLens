@@ -2,7 +2,7 @@ import LocalWeatherForm from "./LocalWeatherForm";
 import { getCoordinatesFromZipcode } from "./GetCoordinates";
 
 import { getWeatherSymbol } from "./WeatherSymbol";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function ExtendedForecast() {
   const [forecastData, setForecastData] = useState(null);
