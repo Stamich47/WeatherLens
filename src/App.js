@@ -17,7 +17,8 @@ function App() {
       <NavBar icon={icon} />
 
       <Routes>
-        <Route index path="main" element={<Main />} />
+        <Route index element={<Main />} />
+        <Route path="main" element={<Main />} />
         <Route path="hourly-forecast" element={<HourlyForecast />} />
         <Route path="weather-map" element={<WeatherMap />} />
         <Route path="extended-forecast" element={<ExtendedForecast />} />

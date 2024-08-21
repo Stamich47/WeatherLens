@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 const getWeatherSymbol = (weatherCode) => {
   switch (weatherCode) {
     case 0:
-      return "☀️ Clear"; // Clear sky
+      return `☀️ Clear`; // Clear sky
     case 1:
     case 2:
     case 3:
@@ -85,8 +85,7 @@ const WeatherSymbol = ({ latitude, longitude }) => {
     <div>
       {weatherCode !== null ? (
         <>
-          <span>Current Conditions: </span>
-          <span className="display-1">{getWeatherSymbol(weatherCode)}</span>
+          <span className="display-6">{getWeatherSymbol(weatherCode)}</span>
         </>
       ) : (
         <div>Loading...</div>
@@ -96,3 +95,5 @@ const WeatherSymbol = ({ latitude, longitude }) => {
 };
 
 export default WeatherSymbol;
+
+export { getWeatherSymbol };
