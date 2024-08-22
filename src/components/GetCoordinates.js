@@ -5,8 +5,6 @@ export const getCoordinatesFromZipcode = async (zipcode) => {
   );
   const data = await response.json();
 
-  console.log(data.results[0].annotations.timezone.name);
-
   if (data.results.length > 0) {
     const { lat, lng } = data.results[0].geometry;
     const city = data.results[0].components._normalized_city;

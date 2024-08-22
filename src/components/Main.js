@@ -50,7 +50,6 @@ export default function Main() {
       }
       const data = await response.json();
       setWeatherData(data);
-      console.log(data);
     } catch (error) {
       setError(error.message);
     } finally {

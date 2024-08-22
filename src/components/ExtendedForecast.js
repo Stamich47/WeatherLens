@@ -62,27 +62,10 @@ export default function ExtendedForecast() {
             }
 
             const formattedDate = convertDateFormat(date);
-            console.log(formattedDate);
-            console.log(
-              new Date(formattedDate).toLocaleDateString("en-US", {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })
-            );
-            console.log(
-              "New Date:" + new Date(formattedDate).toLocaleDateString()
-            );
-            console.log(
-              "New Date no variable:" + new Date().toLocaleDateString()
-            );
 
             return (
-              <div className="container mt-4">
-                <div
-                  className="card mt-4 alert alert-success d-flex justify-content-between align-items-center flex-row"
-                  key={index}
-                >
+              <div key={index} className="container mt-4">
+                <div className="card mt-4 alert alert-success d-flex justify-content-between align-items-center flex-row">
                   <div>
                     <p>
                       <strong>
@@ -93,7 +76,6 @@ export default function ExtendedForecast() {
                         })}
                       </strong>
                     </p>
-                    g
                     <p>
                       High Temp:{" "}
                       <strong>
