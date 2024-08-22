@@ -1,6 +1,5 @@
 import LocalWeatherForm from "./LocalWeatherForm";
 import { getCoordinatesFromZipcode } from "./GetCoordinates";
-
 import { getWeatherSymbol } from "./WeatherSymbol";
 import { useState } from "react";
 
@@ -12,6 +11,7 @@ export default function ExtendedForecast() {
     latitude: null,
     longitude: null,
     city: null,
+    timezone: null,
   });
 
   const handleSearch = async (zipcode) => {
@@ -19,11 +19,10 @@ export default function ExtendedForecast() {
     setError(null);
 
     try {
-      const { latitude, longitude, city } = await getCoordinatesFromZipcode(
-        zipcode
-      );
+      const { latitude, longitude, city, timezone } =
+        await getCoordinatesFromZipcode(zipcode);
 
-      setCoordinates({ latitude, longitude, city });
+      setCoordinates({ latitude, longitude, city, timezone });
 
       const proxyUrl = "https://cors-anywhere.herokuapp.com/";
       const targetUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&temperature_unit=fahrenheit&current=wind_speed_10m&wind_speed_unit=mph`;
@@ -34,8 +33,6 @@ export default function ExtendedForecast() {
       }
       const data = await response.json();
       setForecastData(data);
-      console.log(data);
-      console.log(targetUrl);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -59,6 +56,14 @@ export default function ExtendedForecast() {
               forecastData.daily.weather_code[index]
             );
 
+            function convertDateFormat(dateString) {
+              const [year, month, day] = dateString.split("-");
+              return `${month}-${day}-${year}`;
+            }
+
+            const formattedDate = convertDateFormat(date);
+            console.log(formattedDate);
+
             return (
               <div className="container mt-4">
                 <div
@@ -68,11 +73,10 @@ export default function ExtendedForecast() {
                   <div>
                     <p>
                       <strong>
-                        {new Date(date).toLocaleDateString("en-US", {
+                        {new Date(formattedDate).toLocaleDateString("en-US", {
                           month: "long",
                           day: "numeric",
                           year: "numeric",
-                          timeZone: "UTC",
                         })}
                       </strong>
                     </p>
