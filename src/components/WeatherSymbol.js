@@ -6,9 +6,11 @@ const getWeatherSymbol = (weatherCode) => {
     case 0:
       return { icon: "☀️", text: "Clear" }; // Clear sky
     case 1:
+      return { icon: "🌤️", text: "Mainly Clear" }; // Mainly clear
     case 2:
+      return { icon: "⛅", text: "Partly Cloudy" }; // Partly cloudy
     case 3:
-      return { icon: "🌤️", text: "Partly Cloudy" }; // Mainly clear, partly cloudy, and overcast
+      return { icon: "☁️", text: "Cloudy" }; // Overcast
     case 45:
     case 48:
       return { icon: "🌫️", text: "Foggy" }; // Fog and depositing rime fog
@@ -30,9 +32,22 @@ const getWeatherSymbol = (weatherCode) => {
     case 73:
     case 75:
       return { icon: "❄️", text: "Snowing" }; // Snow fall: Slight, moderate, and heavy intensity
-    // Add more cases as needed
+    case 77:
+      return { icon: "❄️", text: "Snow Grains" }; // Snow grains
+    case 80:
+    case 81:
+    case 82:
+      return { icon: "🌧️", text: "Rain Showers" }; // Rain showers: Slight, moderate, and violent
+    case 85:
+    case 86:
+      return { icon: "❄️", text: "Snow Showers" }; // Snow showers: Slight and heavy
+    case 95:
+      return { icon: "⛈️", text: "Thunderstorm" }; // Thunderstorm: Slight or moderate
+    case 96:
+    case 99:
+      return { icon: "⛈️", text: "Thunderstorm with Hail" }; // Thunderstorm with slight and heavy hail
     default:
-      return { icon: "❓", text: "Unknown" }; // Default case for unknown weather codes
+      return { icon: "❓", text: "Unknown" }; // Unknown weather code
   }
 };
 

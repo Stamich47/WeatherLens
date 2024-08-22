@@ -72,6 +72,7 @@ export default function ExtendedForecast() {
                           month: "long",
                           day: "numeric",
                           year: "numeric",
+                          timeZone: "UTC",
                         })}
                       </strong>
                     </p>
