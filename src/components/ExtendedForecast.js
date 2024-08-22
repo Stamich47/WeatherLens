@@ -42,7 +42,7 @@ export default function ExtendedForecast() {
 
   return (
     <div className="extended-forecast m-3">
-      <h3 className="mb-4 text-center">
+      <h3 className="m-4 text-center">
         {coordinates.city
           ? `${coordinates.city} Extended Forecast`
           : "Extended Forecast"}{" "}
@@ -77,27 +77,16 @@ export default function ExtendedForecast() {
                       </strong>
                     </p>
                     <p>
-                      High Temp:{" "}
-                      <strong>
-                        {forecastData.daily.temperature_2m_max[index]}°F
-                      </strong>
+                      <strong>High Temp: </strong>
+                      {forecastData.daily.temperature_2m_max[index]}°F
                     </p>
                     <p>
-                      Low Temp:{" "}
-                      <strong>
-                        {forecastData.daily.temperature_2m_min[index]}°F
-                      </strong>
+                      <strong>Low Temp: </strong>
+                      {forecastData.daily.temperature_2m_min[index]}°F
                     </p>
                     <p>
-                      Precip Chance:{" "}
-                      <strong>
-                        {
-                          forecastData.daily.precipitation_probability_max[
-                            index
-                          ]
-                        }
-                        %
-                      </strong>
+                      <strong>Precip Chance: </strong>
+                      {forecastData.daily.precipitation_probability_max[index]}%
                     </p>
                   </div>
                   <div className=" d-inline-flex justify-content-center align-items-center flex-column flex-grow-1 ">
