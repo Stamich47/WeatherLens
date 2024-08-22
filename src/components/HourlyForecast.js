@@ -48,12 +48,15 @@ export default function HourlyForecast() {
       ?.filter(({ time }) => new Date(time) > currentTime) || [];
 
   return (
-    <div className="extended-forecast m-3">
-      <h3 className="m-4 text-center">
+    <div className="extended-forecast ">
+      <h3 className=" mt-3 text-center">
         {coordinates.city
           ? `${coordinates.city} Hourly Forecast`
           : "Hourly Forecast"}{" "}
       </h3>
+      <h4 className="text-center">
+        {coordinates.city ? `${new Date().toDateString()}` : ""}
+      </h4>
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
 
@@ -61,51 +64,68 @@ export default function HourlyForecast() {
         const weather = getWeatherSymbol(
           forecastData.hourly.weather_code[index]
         );
+
         const isDay = forecastData.hourly.is_day[index] === 1;
         return (
           <div key={index} className="hourly-forecast container mt-4">
-            <div className="card mt-4 alert alert-success d-flex justify-content-between align-items-center flex-row">
-              <div className="d-flex flex-column justify-content-between align-items-center gap-4">
-                <strong>
-                  {new Date(time).toLocaleTimeString([], {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
-                </strong>
-                <div className="d-inline-flex justify-content-center align-items-center flex-column">
-                  <div className="display-4">
-                    {isDay ? weather.icon : weather.iconNight}{" "}
+            <div className="mb-2 alert alert-info">
+              <h4 className="text-center">
+                {new Date(time).toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </h4>
+
+              <div className="card mt-4 shadow-sm rounded-lg alert alert-info">
+                <div className="d-flex justify-content-between align-items-center">
+                  <div className="d-flex flex-column align-items-center weather-info">
+                    <div className="d-flex flex-column justify-content-center align-items-center">
+                      <div className="display-4">
+                        {isDay ? weather.icon : weather.iconNight}{" "}
+                      </div>
+                      <h4 className="mt-2 weather-text text-center">
+                        {weather.text}
+                      </h4>
+                    </div>
                   </div>
-                  <h4>{weather.text}</h4>
+                  <div className="text-right">
+                    <p className="mb-1">
+                      <strong>Temperature:</strong>{" "}
+                      {forecastData.hourly.temperature_2m[index]}°F
+                    </p>
+                    <p className="mb-1">
+                      <strong>Humidity:</strong>{" "}
+                      {forecastData.hourly.relative_humidity_2m[index]}%
+                    </p>
+                    <p className="mb-1">
+                      <strong>Precip Probability:</strong>{" "}
+                      {forecastData.hourly.precipitation_probability[index]}%
+                    </p>
+                    <p className="mb-1">
+                      <strong>Precipitation:</strong>{" "}
+                      {forecastData.hourly.precipitation[index].toLocaleString(
+                        undefined,
+                        {
+                          minimumFractionDigits: 0,
+                          maximumFractionDigits: 2,
+                        }
+                      )}
+                      "
+                    </p>
+                    <p className="mb-1">
+                      <strong>Wind Speed:</strong>{" "}
+                      {forecastData.hourly.wind_speed_10m[index]} mph
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <p>
-                  <strong>Temperature:</strong>{" "}
-                  {forecastData.hourly.temperature_2m[index]}°F
-                </p>
-                <p>
-                  <strong>Humidity:</strong>{" "}
-                  {forecastData.hourly.relative_humidity_2m[index]}%
-                </p>
-                <p>
-                  <strong>Precipitation Probability:</strong>{" "}
-                  {forecastData.hourly.precipitation_probability[index]}%
-                </p>
-                <p>
-                  <strong>Precipitation:</strong>{" "}
-                  {forecastData.hourly.precipitation[index]} inches
-                </p>
-                <p>
-                  <strong>Wind Speed:</strong>{" "}
-                  {forecastData.hourly.wind_speed_10m[index]} mph
-                </p>
               </div>
             </div>
           </div>
         );
       })}
-      <LocalWeatherForm onSearch={handleSearch} />
+      <div className="m-3">
+        <LocalWeatherForm onSearch={handleSearch} />
+      </div>
     </div>
   );
 }

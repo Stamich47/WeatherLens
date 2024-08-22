@@ -4,13 +4,11 @@ import React, { useState, useEffect } from "react";
 const getWeatherSymbol = (weatherCode) => {
   switch (weatherCode) {
     case 0:
-      return { icon: "☀️", iconNight: "🌕", text: "Clear" }; // Clear sky
+      return { icon: "☀️", iconNight: "🌕", text: "Clear Sky" }; // Clear sky
     case 1:
-      return { icon: "🌤️", iconNight: "🌖", text: "Mainly Clear" }; // Mainly clear
     case 2:
-      return { icon: "⛅", iconNight: "🌥️", text: "Partly Cloudy" }; // Partly cloudy
     case 3:
-      return { icon: "☁️", iconNight: "☁️", text: "Cloudy" }; // Overcast
+      return { icon: "⛅", iconNight: "⛅", text: "Partly Cloudy" }; // Mainly clear, partly cloudy, and overcast
     case 45:
     case 48:
       return { icon: "🌫️", iconNight: "🌫️", text: "Foggy" }; // Fog and depositing rime fog
@@ -30,8 +28,24 @@ const getWeatherSymbol = (weatherCode) => {
       return { icon: "🌨️", iconNight: "🌨️", text: "Freezing Rain" }; // Freezing Rain: Light and heavy intensity
     case 71:
     case 73:
+    case 75:
       return { icon: "❄️", iconNight: "❄️", text: "Snow" }; // Snow: Slight, moderate and heavy intensity
-    // Add more cases as needed
+    case 77:
+      return { icon: "❄️", iconNight: "❄️", text: "Snow Grains" }; // Snow grains
+    case 80:
+      return { icon: "🌦️", iconNight: "🌦️", text: "Rain Showers" }; // Rain showers: Slight
+    case 81:
+      return { icon: "🌧️", iconNight: "🌧️", text: "Heavy Rain" }; // Rain showers: Moderate or heavy
+    case 82:
+      return { icon: "🌧️", iconNight: "🌧️", text: "Violent Rain" }; // Rain showers: Violent
+    case 85:
+    case 86:
+      return { icon: "❄️", iconNight: "❄️", text: "Snow Showers" }; // Snow showers slight and heavy
+    case 95:
+      return { icon: "⛈️", iconNight: "⛈️", text: "Thunderstorm" }; // Thunderstorm: Slight or moderate
+    case 96:
+    case 99:
+      return { icon: "⛈️", iconNight: "⛈️", text: "Thunderstorm with Hail" }; // Thunderstorm with slight and heavy hail
     default:
       return { icon: "❓", iconNight: "❓", text: "Unknown" }; // Unknown weather code
   }

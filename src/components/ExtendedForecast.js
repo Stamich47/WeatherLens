@@ -42,7 +42,7 @@ export default function ExtendedForecast() {
 
   return (
     <div className="extended-forecast m-3">
-      <h3 className="m-4 text-center">
+      <h3 className="text-center">
         {coordinates.city
           ? `${coordinates.city} Extended Forecast`
           : "Extended Forecast"}{" "}
@@ -64,18 +64,18 @@ export default function ExtendedForecast() {
             const formattedDate = convertDateFormat(date);
 
             return (
-              <div key={index} className="container mt-4">
-                <div className="card mt-4 alert alert-success d-flex justify-content-between align-items-center flex-row">
+              <div key={index} className="container mt-4 alert alert-info">
+                <h4 className="text-center">
+                  <strong>
+                    {new Date(formattedDate).toLocaleDateString("en-US", {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </strong>
+                </h4>
+                <div className="card mt-4 alert alert-info d-flex justify-content-between align-items-center flex-row shadow-sm rounded-lg">
                   <div>
-                    <p>
-                      <strong>
-                        {new Date(formattedDate).toLocaleDateString("en-US", {
-                          month: "long",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
-                      </strong>
-                    </p>
                     <p>
                       <strong>High Temp: </strong>
                       {forecastData.daily.temperature_2m_max[index]}°F
