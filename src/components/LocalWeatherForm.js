@@ -14,7 +14,7 @@ const LocalWeatherForm = ({ onSearch }) => {
         type="text"
         value={zipcode}
         onChange={(e) => setZipcode(e.target.value)}
-        placeholder="Enter Zipcode..."
+        placeholder="Enter Zip Code..."
         className="form-control mb-2"
       />
       <button type="submit" className="btn btn-primary">
