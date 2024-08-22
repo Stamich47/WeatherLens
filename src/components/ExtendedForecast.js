@@ -58,7 +58,7 @@ export default function ExtendedForecast() {
 
             function convertDateFormat(dateString) {
               const [year, month, day] = dateString.split("-");
-              return `${month}-${day}-${year}`;
+              return `${month}/${day}/${year}`;
             }
 
             const formattedDate = convertDateFormat(date);
@@ -70,7 +70,9 @@ export default function ExtendedForecast() {
                 year: "numeric",
               })
             );
-            console.log("New Date:" + new Date(date).toLocaleDateString());
+            console.log(
+              "New Date:" + new Date(formattedDate).toLocaleDateString()
+            );
             console.log(
               "New Date no variable:" + new Date().toLocaleDateString()
             );
