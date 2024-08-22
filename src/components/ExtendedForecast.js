@@ -70,9 +70,7 @@ export default function ExtendedForecast() {
                 year: "numeric",
               })
             );
-            console.log(
-              "New Date:" + new Date(formattedDate).toLocaleDateString()
-            );
+            console.log("New Date:" + new Date(date).toLocaleDateString());
             console.log(
               "New Date no variable:" + new Date().toLocaleDateString()
             );
