@@ -49,7 +49,7 @@ export default function Main() {
 
       const response = await fetch(proxyUrl + targetUrl);
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        throw new Error(`Error! Status: ${response.status}`);
       }
       const data = await response.json();
       setWeatherData(data);

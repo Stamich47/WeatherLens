@@ -64,11 +64,11 @@ const WeatherSymbol = ({ latitude, longitude }) => {
 
           const response = await fetch(proxyUrl + targetUrl);
           if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            throw new Error(`Error! Status: ${response.status}`);
           }
 
           const data = await response.json();
-          setWeatherCode(data.current_weather.weathercode); // Adjust this based on your API response structure
+          setWeatherCode(data.current_weather.weathercode);
         } catch (error) {
           console.error("Error fetching weather data:", error);
           setError(error.message);

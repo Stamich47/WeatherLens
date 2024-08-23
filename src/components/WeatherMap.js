@@ -106,11 +106,14 @@ const WeatherMap = () => {
   };
 
   return (
-    <div>
-      <h3 className="mt-3 text-center">World Weather Map</h3>
+    <div className="m-4">
+      <h3 className="mt-3 text-center">Weather Map</h3>
       <LocalWeatherForm onSearch={handleSearch} />{" "}
-      {/* Pass handleSearch as onSearch prop */}
-      <div id="map" style={{ height: "500px", width: "100%" }}></div>
+      <div
+        id="map"
+        className="border rounded-3"
+        style={{ height: "500px" }}
+      ></div>
     </div>
   );
 };
