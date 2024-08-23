@@ -106,7 +106,7 @@ const WeatherMap = () => {
   };
 
   return (
-    <div className="m-4">
+    <div className="m-2">
       <h3 className="mt-3 text-center">Weather Map</h3>
       <LocalWeatherForm onSearch={handleSearch} />{" "}
       <div
