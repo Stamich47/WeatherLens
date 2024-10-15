@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import TemperatureFetch from "./TemperatureFetch";
 import LocalWeatherForm from "./LocalWeatherForm";
 import { getCoordinatesFromZipcode } from "./GetCoordinates";
@@ -33,22 +33,11 @@ export default function Main() {
     hour: "2-digit",
     minute: "2-digit",
   });
-  const [showPopup, setShowPopup] = useState(false);
-
-  useEffect(() => {
-    if (showPopup) {
-      alert(
-        "The API is currently being run through a proxy server. Please open the Dropdown Nav Bar and select '403 Error - Get Access' to deploy the proxy server."
-      );
-      setShowPopup(false);
-    }
-  }, [showPopup]);
 
   const handleSearch = async (zipcode) => {
     setLoading(true);
     setError(null);
     if (error) {
-      setShowPopup(true);
     }
 
     try {

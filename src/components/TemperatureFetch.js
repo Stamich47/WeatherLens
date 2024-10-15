@@ -21,8 +21,13 @@ const WeatherComponent = () => {
         },
       })
         .then((response) => {
-          if (!response.ok) {
+          if (!response.ok && response.status !== 403) {
             throw new Error(`HTTP error! Status: ${response.status}`);
+          } else if (response.status === 403) {
+            throw (
+              new Error(`HTTP error! Status: ${response.status}`) &&
+              alert("403 Error!")
+            );
           }
           return response.json();
         })
