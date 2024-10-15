@@ -26,7 +26,9 @@ const WeatherComponent = () => {
           } else if (response.status === 403) {
             throw (
               new Error(`HTTP error! Status: ${response.status}`) &&
-              alert("403 Error!")
+              alert(
+                "403 Error! The weather API fetch is currently being run through a proxy server. On the Navigationg dropdown, please select '403 Error - Get Access' to deploy the proxy server."
+              )
             );
           }
           return response.json();
