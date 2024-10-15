@@ -42,7 +42,7 @@ export default function Main() {
       );
       setShowPopup(false);
     }
-  }, []);
+  }, [showPopup]);
 
   const handleSearch = async (zipcode) => {
     setLoading(true);
