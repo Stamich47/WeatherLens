@@ -5,10 +5,8 @@
   force = true
   headers = { X-From = "Netlify" }
 
-
 [[redirects]]
-  from = "/forecast/*"
-    to = "https://api.meteomatics.com/:splat"
+  from = "/api/meteomatics/*"
+  to = "https://api.meteomatics.com/:splat"
   status = 200
   force = true
-  headers = { X-From = "Netlify" }
