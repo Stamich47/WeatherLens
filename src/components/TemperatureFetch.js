@@ -13,7 +13,7 @@ const WeatherComponent = () => {
       const username = process.env.REACT_APP_USER;
       const password = process.env.REACT_APP_PW;
       const endpoint = `https://api.meteomatics.com/${timeString}/t_2m:F/34.0536909,-118.242766/json`; // Los Angeles coordinates
-      const proxyUrl = "https://thingproxy.freeboard.io/fetch/";
+      const proxyUrl = "https://cors.bridged.cc/";
 
       fetch(proxyUrl + endpoint, {
         headers: {
