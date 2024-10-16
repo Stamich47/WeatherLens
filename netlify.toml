@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/api/*"
-  to = "https://api.meteomatics.com/:splat"
+  to = "https://api.open-meteo.com/:splat"
   status = 200
   force = true
   headers = { X-From = "Netlify" }
