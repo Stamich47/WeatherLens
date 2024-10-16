@@ -26,8 +26,14 @@ export default function HourlyForecast() {
 
       const targetUrl = `/api/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,precipitation,weather_code,wind_speed_10m,is_day&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=${timezone}&forecast_days=1`;
 
+      const username = process.env.REACT_APP_USER;
+      const password = process.env.REACT_APP_PW;
+
       const response = await fetch(targetUrl, {
         mode: "cors",
+        headers: {
+          Authorization: "Basic " + btoa(`${username}:${password}`),
+        },
       });
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
