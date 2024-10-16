@@ -24,7 +24,7 @@ export default function HourlyForecast() {
 
       setCoordinates({ latitude, longitude, city, timezone });
 
-      const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+      const proxyUrl = "https://thingproxy.freeboard.io/fetch/";
       const targetUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,precipitation,weather_code,wind_speed_10m,is_day&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=${timezone}&forecast_days=1`;
 
       const response = await fetch(proxyUrl + targetUrl);

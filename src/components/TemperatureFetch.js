@@ -13,8 +13,9 @@ const WeatherComponent = () => {
       const username = process.env.REACT_APP_USER;
       const password = process.env.REACT_APP_PW;
       const endpoint = `https://api.meteomatics.com/${timeString}/t_2m:F/34.0536909,-118.242766/json`; // Los Angeles coordinates
+      const proxyUrl = "https://thingproxy.freeboard.io/fetch/";
 
-      fetch(endpoint, {
+      fetch(proxyUrl + endpoint, {
         headers: {
           Authorization: "Basic " + btoa(`${username}:${password}`),
         },
@@ -22,13 +23,6 @@ const WeatherComponent = () => {
         .then((response) => {
           if (!response.ok && response.status !== 403) {
             throw new Error(`HTTP error! Status: ${response.status}`);
-          } else if (response.status === 403) {
-            throw (
-              new Error(`HTTP error! Status: ${response.status}`) &&
-              alert(
-                `403 Error! The weather API access is currently being run through a proxy server.\n\nOpen the Nav Dropdown and please select '403 Error - Get Access' to deploy the proxy server.`
-              )
-            );
           }
           return response.json();
         })
