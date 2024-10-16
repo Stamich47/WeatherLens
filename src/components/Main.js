@@ -46,9 +46,18 @@ export default function Main() {
       );
       setCoordinates({ latitude, longitude, city });
 
-      const targetUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code&daily=temperature_2m_max&daily=temperature_2m_min&temperature_unit=fahrenheit&current=wind_speed_10m&wind_speed_unit=mph`;
+      const targetUrl = `/api/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code&daily=temperature_2m_max&daily=temperature_2m_min&temperature_unit=fahrenheit&current=wind_speed_10m&wind_speed_unit=mph`;
 
-      const response = await fetch(targetUrl);
+      const username = process.env.REACT_APP_USER;
+      const password = process.env.REACT_APP_PW;
+
+      const response = await fetch(targetUrl, {
+        mode: "cors",
+        headers: {
+          Authorization: "Basic " + btoa(`${username}:${password}`),
+        },
+      });
+
       if (!response.ok) {
         throw new Error(`Error! Status: ${response.status}`);
       }

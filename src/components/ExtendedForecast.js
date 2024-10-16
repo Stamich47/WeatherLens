@@ -26,8 +26,14 @@ export default function ExtendedForecast() {
 
       const targetUrl = `/api/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&temperature_unit=fahrenheit&current=wind_speed_10m&wind_speed_unit=mph`;
 
+      const username = process.env.REACT_APP_USER;
+      const password = process.env.REACT_APP_PW;
+
       const response = await fetch(targetUrl, {
         mode: "cors",
+        headers: {
+          Authorization: "Basic " + btoa(`${username}:${password}`),
+        },
       });
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
