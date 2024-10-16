@@ -59,10 +59,17 @@ const WeatherSymbol = ({ latitude, longitude }) => {
     const fetchWeatherData = async () => {
       if (latitude && longitude) {
         try {
-          const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-          const targetUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`;
+          const targetUrl = `/api/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`;
 
-          const response = await fetch(proxyUrl + targetUrl);
+          const username = process.env.REACT_APP_USER;
+          const password = process.env.REACT_APP_PW;
+
+          const response = await fetch(targetUrl, {
+            mode: "cors",
+            headers: {
+              Authorization: "Basic " + btoa(`${username}:${password}`),
+            },
+          });
           if (!response.ok) {
             throw new Error(`Error! Status: ${response.status}`);
           }
