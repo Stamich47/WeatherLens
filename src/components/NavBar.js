@@ -26,12 +26,6 @@ export default function NavBar({ icon }) {
       </button>
       <div className="collapse navbar-collapse mx-2" id="navbarNav">
         <ul className="navbar-nav">
-          <li className="nav-item active">
-            <a className="nav-link" href="https://cors-anywhere.herokuapp.com/">
-              403 Error - Get Access
-            </a>
-          </li>
-
           <Link className="link" to="main">
             <li className="nav-item nav-link">Home</li>
           </Link>
