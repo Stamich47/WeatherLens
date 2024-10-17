@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import TemperatureFetch from "./TemperatureFetch";
 import LocalWeatherForm from "./LocalWeatherForm";
-import { getCoordinatesFromZipcode } from "./GetCoordinates";
 import WeatherSymbol from "./WeatherSymbol";
+import { WeatherContext } from "../context/WeatherContext";
 
 const hour = new Date().getHours();
 
@@ -21,54 +21,17 @@ const mainGreeting = () => {
 };
 
 export default function Main() {
-  const [coordinates, setCoordinates] = useState({
-    latitude: null,
-    longitude: null,
-    city: null,
-  });
-  const [weatherData, setWeatherData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const { getCoordinatesFromZipcode, weatherData, city } =
+    useContext(WeatherContext);
+
+  const handleSearch = async (zipcode) => {
+    await getCoordinatesFromZipcode(zipcode);
+  };
+
   const currentTime = new Date().toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
   });
-
-  const handleSearch = async (zipcode) => {
-    setLoading(true);
-    setError(null);
-    if (error) {
-    }
-
-    try {
-      const { latitude, longitude, city } = await getCoordinatesFromZipcode(
-        zipcode
-      );
-      setCoordinates({ latitude, longitude, city });
-
-      const targetUrl = `/api/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code&daily=temperature_2m_max&daily=temperature_2m_min&temperature_unit=fahrenheit&current=wind_speed_10m&wind_speed_unit=mph`;
-
-      const username = process.env.REACT_APP_USER;
-      const password = process.env.REACT_APP_PW;
-
-      const response = await fetch(targetUrl, {
-        mode: "cors",
-        headers: {
-          Authorization: "Basic " + btoa(`${username}:${password}`),
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error(`Error! Status: ${response.status}`);
-      }
-      const data = await response.json();
-      setWeatherData(data);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <main className="container mt-4">
@@ -82,14 +45,11 @@ export default function Main() {
             </strong>
             {"°F "} in Los Angeles.
           </div>
-          {loading && <p>Loading...</p>}
-          {error && <p>Error: {error}</p>}
+
           {weatherData && (
             <div className="card mt-4 alert alert-success">
               <div className="card-body">
-                <h5 className="card-title mb-4">
-                  Today's Forecast for {coordinates.city}
-                </h5>
+                <h5 className="card-title mb-4">Today's Forecast for {city}</h5>
                 <p className="card-text">
                   High Temperature:{" "}
                   <strong>{weatherData.daily.temperature_2m_max[0]}°F</strong>
@@ -104,8 +64,7 @@ export default function Main() {
                 </p>
                 <div>
                   <WeatherSymbol
-                    latitude={coordinates.latitude}
-                    longitude={coordinates.longitude}
+                    weatherCode={weatherData.daily.weather_code[0]}
                   />
                 </div>
               </div>

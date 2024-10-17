@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import {
   WiDaySunny,
   WiNightClear,
@@ -120,45 +119,7 @@ const getWeatherSymbol = (weatherCode) => {
   }
 };
 
-const WeatherSymbol = ({ latitude, longitude }) => {
-  const [weatherCode, setWeatherCode] = useState(null);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchWeatherData = async () => {
-      if (latitude && longitude) {
-        try {
-          const targetUrl = `/api/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`;
-
-          const username = process.env.REACT_APP_USER;
-          const password = process.env.REACT_APP_PW;
-
-          const response = await fetch(targetUrl, {
-            mode: "cors",
-            headers: {
-              Authorization: "Basic " + btoa(`${username}:${password}`),
-            },
-          });
-          if (!response.ok) {
-            throw new Error(`Error! Status: ${response.status}`);
-          }
-
-          const data = await response.json();
-          setWeatherCode(data.current_weather.weathercode);
-        } catch (error) {
-          console.error("Error fetching weather data:", error);
-          setError(error.message);
-        }
-      }
-    };
-
-    fetchWeatherData();
-  }, [latitude, longitude]);
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
+const WeatherSymbol = ({ weatherCode }) => {
   const weather = getWeatherSymbol(weatherCode);
 
   return (
