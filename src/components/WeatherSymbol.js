@@ -1,53 +1,122 @@
 import React, { useState, useEffect } from "react";
+import {
+  WiDaySunny,
+  WiNightClear,
+  WiDayCloudy,
+  WiNightAltCloudy,
+  WiFog,
+  WiDayRain,
+  WiNightAltRain,
+  WiDaySnow,
+  WiNightAltSnow,
+  WiDayShowers,
+  WiNightAltShowers,
+  WiThunderstorm,
+} from "react-icons/wi";
 
-// Function to get the text weather symbol based on the weather code
 const getWeatherSymbol = (weatherCode) => {
   switch (weatherCode) {
     case 0:
-      return { icon: "☀️", iconNight: "🌕", text: "Clear Sky" }; // Clear sky
+      return {
+        icon: <WiDaySunny />,
+        iconNight: <WiNightClear />,
+        text: "Clear Sky",
+      }; // Clear sky
     case 1:
     case 2:
     case 3:
-      return { icon: "⛅", iconNight: "⛅", text: "Partly Cloudy" }; // Mainly clear, partly cloudy, and overcast
+      return {
+        icon: <WiDayCloudy />,
+        iconNight: <WiNightAltCloudy />,
+        text: "Partly Cloudy",
+      }; // Mainly clear, partly cloudy, and overcast
     case 45:
     case 48:
-      return { icon: "🌫️", iconNight: "🌫️", text: "Foggy" }; // Fog and depositing rime fog
+      return { icon: <WiFog />, iconNight: <WiFog />, text: "Foggy" }; // Fog and depositing rime fog
     case 51:
     case 53:
     case 55:
-      return { icon: "🌧️", iconNight: "🌧️", text: "Light Rain" }; // Drizzle: Light, moderate, and dense intensity
+      return {
+        icon: <WiDayRain />,
+        iconNight: <WiNightAltRain />,
+        text: "Light Rain",
+      }; // Drizzle: Light, moderate, and dense intensity
     case 56:
     case 57:
-      return { icon: "🌨️", iconNight: "🌨️", text: "Freezing Drizzle" }; // Freezing Drizzle: Light and dense intensity
+      return {
+        icon: <WiDaySnow />,
+        iconNight: <WiNightAltSnow />,
+        text: "Freezing Drizzle",
+      }; // Freezing Drizzle: Light and dense intensity
     case 61:
     case 63:
     case 65:
-      return { icon: "🌧️", iconNight: "🌧️", text: "Rain" }; // Rain: Slight, moderate and heavy intensity
+      return {
+        icon: <WiDayRain />,
+        iconNight: <WiNightAltRain />,
+        text: "Rain",
+      }; // Rain: Slight, moderate and heavy intensity
     case 66:
     case 67:
-      return { icon: "🌨️", iconNight: "🌨️", text: "Freezing Rain" }; // Freezing Rain: Light and heavy intensity
+      return {
+        icon: <WiDaySnow />,
+        iconNight: <WiNightAltSnow />,
+        text: "Freezing Rain",
+      }; // Freezing Rain: Light and heavy intensity
     case 71:
     case 73:
     case 75:
-      return { icon: "❄️", iconNight: "❄️", text: "Snow" }; // Snow: Slight, moderate and heavy intensity
+      return {
+        icon: <WiDaySnow />,
+        iconNight: <WiNightAltSnow />,
+        text: "Snow",
+      }; // Snow: Slight, moderate and heavy intensity
     case 77:
-      return { icon: "❄️", iconNight: "❄️", text: "Snow Grains" }; // Snow grains
+      return {
+        icon: <WiDaySnow />,
+        iconNight: <WiNightAltSnow />,
+        text: "Snow Grains",
+      }; // Snow grains
     case 80:
-      return { icon: "🌦️", iconNight: "🌦️", text: "Rain Showers" }; // Rain showers: Slight
+      return {
+        icon: <WiDayShowers />,
+        iconNight: <WiNightAltShowers />,
+        text: "Rain Showers",
+      }; // Rain showers: Slight
     case 81:
-      return { icon: "🌧️", iconNight: "🌧️", text: "Heavy Rain" }; // Rain showers: Moderate or heavy
+      return {
+        icon: <WiDayRain />,
+        iconNight: <WiNightAltRain />,
+        text: "Heavy Rain",
+      }; // Rain showers: Moderate or heavy
     case 82:
-      return { icon: "🌧️", iconNight: "🌧️", text: "Violent Rain" }; // Rain showers: Violent
+      return {
+        icon: <WiDayRain />,
+        iconNight: <WiNightAltRain />,
+        text: "Violent Rain",
+      }; // Rain showers: Violent
     case 85:
     case 86:
-      return { icon: "❄️", iconNight: "❄️", text: "Snow Showers" }; // Snow showers slight and heavy
+      return {
+        icon: <WiDaySnow />,
+        iconNight: <WiNightAltSnow />,
+        text: "Snow Showers",
+      }; // Snow showers slight and heavy
     case 95:
-      return { icon: "⛈️", iconNight: "⛈️", text: "Thunderstorm" }; // Thunderstorm: Slight or moderate
+      return {
+        icon: <WiThunderstorm />,
+        iconNight: <WiThunderstorm />,
+        text: "Thunderstorm",
+      }; // Thunderstorm: Slight or moderate
     case 96:
     case 99:
-      return { icon: "⛈️", iconNight: "⛈️", text: "Thunderstorm with Hail" }; // Thunderstorm with slight and heavy hail
+      return {
+        icon: <WiThunderstorm />,
+        iconNight: <WiThunderstorm />,
+        text: "Thunderstorm with Hail",
+      }; // Thunderstorm with slight and heavy hail
     default:
-      return { icon: "❓", iconNight: "❓", text: "Unknown" }; // Unknown weather code
+      return { icon: null, iconNight: null, text: "Unknown" }; // Default case
   }
 };
 

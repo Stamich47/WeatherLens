@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { getCoordinatesFromZipcode } from "./GetCoordinates"; // Import getCoordinatesFromZipcode
-import LocalWeatherForm from "./LocalWeatherForm"; // Import LocalWeatherForm
+import { getCoordinatesFromZipcode } from "./GetCoordinates";
+import LocalWeatherForm from "./LocalWeatherForm";
 
 const WeatherMap = () => {
-  const mapRef = useRef(null); // Use a ref to store the map instance
-  const radarLayerRef = useRef(null); // Use a ref to store the radar layer instance
+  const mapRef = useRef(null);
+  const radarLayerRef = useRef(null);
   const [coordinates, setCoordinates] = useState({
     latitude: null,
     longitude: null,
