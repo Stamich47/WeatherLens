@@ -1,78 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { getWeatherSymbol } from "./WeatherSymbol";
 import LocalWeatherForm from "./LocalWeatherForm";
-import { getCoordinatesFromZipcode } from "./GetCoordinates";
+import { WeatherContext } from "../context/WeatherContext";
 
 export default function HourlyForecast() {
+  const { getCoordinatesFromZipcode, weatherData, city } =
+    useContext(WeatherContext);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [forecastData, setForecastData] = useState(null);
-  const [coordinates, setCoordinates] = useState({
-    latitude: null,
-    longitude: null,
-    city: null,
-    timezone: null,
-  });
 
   const handleSearch = async (zipcode) => {
     setLoading(true);
-    setError(null);
-
-    try {
-      const { latitude, longitude, city, timezone } =
-        await getCoordinatesFromZipcode(zipcode);
-
-      setCoordinates({ latitude, longitude, city, timezone });
-
-      const targetUrl = `/api/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,precipitation,weather_code,wind_speed_10m,is_day&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=${timezone}&forecast_days=1`;
-
-      const username = process.env.REACT_APP_USER;
-      const password = process.env.REACT_APP_PW;
-
-      const response = await fetch(targetUrl, {
-        mode: "cors",
-        headers: {
-          Authorization: "Basic " + btoa(`${username}:${password}`),
-        },
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const data = await response.json();
-      setForecastData(data);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
+    await getCoordinatesFromZipcode(zipcode);
+    setLoading(false);
   };
 
   const currentTime = new Date();
+  const currentDate = currentTime.toDateString();
 
   const filteredTimes =
-    forecastData?.hourly?.time
+    weatherData?.hourly?.time
       ?.map((time, index) => ({ time, index }))
-      ?.filter(({ time }) => new Date(time) > currentTime) || [];
+      ?.filter(({ time }) => {
+        const timeDate = new Date(time).toDateString();
+        return timeDate === currentDate && new Date(time) > currentTime;
+      }) || [];
+
+  console.log("Filtered Times:", filteredTimes);
 
   return (
     <div className="extended-forecast ">
       <h3 className=" mt-3 text-center">
-        {coordinates.city
-          ? `${coordinates.city} Hourly Forecast`
-          : "Hourly Forecast"}{" "}
+        {city ? `${city} Hourly Forecast` : "Hourly Forecast"}{" "}
       </h3>
       <h4 className="text-center">
-        {coordinates.city ? `${new Date().toDateString()}` : ""}
+        {city ? `${new Date().toDateString()}` : ""}
       </h4>
       {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
 
       {filteredTimes.map(({ time, index }) => {
         const weather = getWeatherSymbol(
-          forecastData.hourly.weather_code[index]
+          weatherData.hourly.weather_code[index]
         );
 
-        const isDay = forecastData.hourly.is_day[index] === 1;
+        const isDay = weatherData.hourly.is_day[index] === 1;
         return (
           <div key={index} className="hourly-forecast container mt-4">
             <div className="mb-2 alert alert-info">
@@ -98,19 +68,19 @@ export default function HourlyForecast() {
                   <div className="text-right">
                     <p className="mb-1">
                       <strong>Temperature:</strong>{" "}
-                      {forecastData.hourly.temperature_2m[index]}°F
+                      {weatherData.hourly.temperature_2m[index]}°F
                     </p>
                     <p className="mb-1">
                       <strong>Humidity:</strong>{" "}
-                      {forecastData.hourly.relative_humidity_2m[index]}%
+                      {weatherData.hourly.relative_humidity_2m[index]}%
                     </p>
                     <p className="mb-1">
                       <strong>Precip Probability:</strong>{" "}
-                      {forecastData.hourly.precipitation_probability[index]}%
+                      {weatherData.hourly.precipitation_probability[index]}%
                     </p>
                     <p className="mb-1">
                       <strong>Precipitation:</strong>{" "}
-                      {forecastData.hourly.precipitation[index].toLocaleString(
+                      {weatherData.hourly.precipitation[index].toLocaleString(
                         undefined,
                         {
                           minimumFractionDigits: 0,
@@ -121,7 +91,7 @@ export default function HourlyForecast() {
                     </p>
                     <p className="mb-1">
                       <strong>Wind Speed:</strong>{" "}
-                      {forecastData.hourly.wind_speed_10m[index]} mph
+                      {weatherData.hourly.wind_speed_10m[index]} mph
                     </p>
                   </div>
                 </div>

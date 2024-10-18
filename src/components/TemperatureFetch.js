@@ -17,7 +17,7 @@ const TemperatureFetch = () => {
         },
       })
         .then((response) => {
-          if (!response.ok && response.status !== 403) {
+          if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
           return response.json();

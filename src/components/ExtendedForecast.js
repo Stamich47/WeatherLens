@@ -1,66 +1,30 @@
 import LocalWeatherForm from "./LocalWeatherForm";
-import { getCoordinatesFromZipcode } from "./GetCoordinates";
+import { WeatherContext } from "../context/WeatherContext";
 import { getWeatherSymbol } from "./WeatherSymbol";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 export default function ExtendedForecast() {
-  const [forecastData, setForecastData] = useState(null);
+  const { getCoordinatesFromZipcode, weatherData, city } =
+    useContext(WeatherContext);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [coordinates, setCoordinates] = useState({
-    latitude: null,
-    longitude: null,
-    city: null,
-    timezone: null,
-  });
 
   const handleSearch = async (zipcode) => {
     setLoading(true);
-    setError(null);
-
-    try {
-      const { latitude, longitude, city, timezone } =
-        await getCoordinatesFromZipcode(zipcode);
-
-      setCoordinates({ latitude, longitude, city, timezone });
-
-      const targetUrl = `/api/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&temperature_unit=fahrenheit&current=wind_speed_10m&wind_speed_unit=mph`;
-
-      const username = process.env.REACT_APP_USER;
-      const password = process.env.REACT_APP_PW;
-
-      const response = await fetch(targetUrl, {
-        mode: "cors",
-        headers: {
-          Authorization: "Basic " + btoa(`${username}:${password}`),
-        },
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const data = await response.json();
-      setForecastData(data);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
+    await getCoordinatesFromZipcode(zipcode);
+    setLoading(false);
   };
 
   return (
     <div className="extended-forecast m-3">
       <h3 className="text-center">
-        {coordinates.city
-          ? `${coordinates.city} Extended Forecast`
-          : "Extended Forecast"}{" "}
+        {city ? `${city} Extended Forecast` : "Extended Forecast"}{" "}
       </h3>
       {loading && <div>Loading...</div>}
-      {error && <div>Error: {error}</div>}
-      {forecastData && (
+      {weatherData && (
         <div>
-          {forecastData.daily.time.map((date, index) => {
+          {weatherData.daily.time.map((date, index) => {
             const weather = getWeatherSymbol(
-              forecastData.daily.weather_code[index]
+              weatherData.daily.weather_code[index]
             );
 
             function convertDateFormat(dateString) {
@@ -85,15 +49,15 @@ export default function ExtendedForecast() {
                   <div>
                     <p>
                       <strong>High Temp: </strong>
-                      {forecastData.daily.temperature_2m_max[index]}°F
+                      {weatherData.daily.temperature_2m_max[index]}°F
                     </p>
                     <p>
                       <strong>Low Temp: </strong>
-                      {forecastData.daily.temperature_2m_min[index]}°F
+                      {weatherData.daily.temperature_2m_min[index]}°F
                     </p>
                     <p>
                       <strong>Precip Chance: </strong>
-                      {forecastData.daily.precipitation_probability_max[index]}%
+                      {weatherData.daily.precipitation_probability_max[index]}%
                     </p>
                   </div>
                   <div className=" d-inline-flex justify-content-center align-items-center flex-column flex-grow-1 ">
