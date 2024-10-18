@@ -2,28 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function NavBar({ icon }) {
+export default function NavBar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <Link className="link" to="main">
-        <img
-          src={icon}
-          width={40}
-          alt="weatherLens logo"
-          className="mx-2"
-        ></img>
-      </Link>
-      <button
-        className="navbar-toggler mx-2"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="true"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
+    <nav className="navbar navbar-expand-lg navbar-light nav-wide">
       <div className="collapse navbar-collapse mx-2" id="navbarNav">
         <ul className="navbar-nav">
           <Link className="link" to="main">

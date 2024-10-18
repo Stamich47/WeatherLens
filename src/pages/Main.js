@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import TemperatureFetch from "./TemperatureFetch";
-import LocalWeatherForm from "./LocalWeatherForm";
-import WeatherSymbol from "./WeatherSymbol";
+import TemperatureFetch from "../components/TemperatureFetch";
+import LocalWeatherForm from "../components/LocalWeatherForm";
+import WeatherSymbol from "../components/WeatherSymbol";
 import { WeatherContext } from "../context/WeatherContext";
 
 const hour = new Date().getHours();

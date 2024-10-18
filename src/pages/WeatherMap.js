@@ -1,16 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { getCoordinatesFromZipcode } from "./GetCoordinates";
-import LocalWeatherForm from "./LocalWeatherForm";
+import LocalWeatherForm from "../components/LocalWeatherForm";
+import { WeatherContext } from "../context/WeatherContext";
 
 const WeatherMap = () => {
+  const { getCoordinatesFromZipcode, weatherData } = useContext(WeatherContext);
   const mapRef = useRef(null);
   const radarLayerRef = useRef(null);
-  const [coordinates, setCoordinates] = useState({
-    latitude: null,
-    longitude: null,
-  });
 
   const fetchLatestTimestamp = async () => {
     try {
@@ -91,15 +88,14 @@ const WeatherMap = () => {
   }, []);
 
   useEffect(() => {
-    if (coordinates.latitude && coordinates.longitude && mapRef.current) {
-      mapRef.current.setView([coordinates.latitude, coordinates.longitude], 9); // Update map view to the coordinates with a zoom level of 14 (street map level)
+    if (weatherData && mapRef.current) {
+      mapRef.current.setView([weatherData.latitude, weatherData.longitude], 9);
     }
-  }, [coordinates]);
+  }, [weatherData]);
 
   const handleSearch = async (zipCode) => {
     try {
-      const { latitude, longitude } = await getCoordinatesFromZipcode(zipCode);
-      setCoordinates({ latitude, longitude });
+      await getCoordinatesFromZipcode(zipCode);
     } catch (error) {
       console.error("Error geocoding zip code:", error);
     }

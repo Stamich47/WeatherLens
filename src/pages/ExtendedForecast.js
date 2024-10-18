@@ -1,6 +1,6 @@
-import LocalWeatherForm from "./LocalWeatherForm";
+import LocalWeatherForm from "../components/LocalWeatherForm";
 import { WeatherContext } from "../context/WeatherContext";
-import { getWeatherSymbol } from "./WeatherSymbol";
+import { getWeatherSymbol } from "../components/WeatherSymbol";
 import { useState, useContext } from "react";
 
 export default function ExtendedForecast() {

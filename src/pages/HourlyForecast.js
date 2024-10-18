@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import { getWeatherSymbol } from "./WeatherSymbol";
-import LocalWeatherForm from "./LocalWeatherForm";
+import { getWeatherSymbol } from "../components/WeatherSymbol";
+import LocalWeatherForm from "../components/LocalWeatherForm";
 import { WeatherContext } from "../context/WeatherContext";
 
 export default function HourlyForecast() {
@@ -15,14 +15,14 @@ export default function HourlyForecast() {
   };
 
   const currentTime = new Date();
-  const currentDate = currentTime.toDateString();
 
   const filteredTimes =
     weatherData?.hourly?.time
       ?.map((time, index) => ({ time, index }))
-      ?.filter(({ time }) => {
-        const timeDate = new Date(time).toDateString();
-        return timeDate === currentDate && new Date(time) > currentTime;
+      ?.filter(({ time, index }) => {
+        return (
+          new Date(time) > currentTime && index < currentTime.getHours() + 13
+        );
       }) || [];
 
   console.log("Filtered Times:", filteredTimes);
