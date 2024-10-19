@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 
 export const WeatherContext = createContext();
 
@@ -47,12 +47,6 @@ export const WeatherProvider = ({ children }) => {
 
     setWeatherData(data);
   };
-
-  useEffect(() => {
-    if (weatherData) {
-      console.log("Weather Data:", weatherData);
-    }
-  }, [weatherData]);
 
   return (
     <WeatherContext.Provider
